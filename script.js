@@ -6,7 +6,7 @@ function login() {
         loginCount++;
         localStorage.setItem(`${username}_loginCount`, loginCount);
 
-        // 更新總登入人次
+        // 更新總來訪人次
         let totalvisited = localStorage.getItem('totalvisited') || 0;
         totalvisited++;
         localStorage.setItem('totalvisited', totalvisited);
@@ -27,11 +27,11 @@ function displayWelcomeMessage() {
     const username = getParameterByName('username');
     if (username) {
         const loginCount = localStorage.getItem(`${username}_loginCount`) || 0;
-        document.getElementById('welcome-message').textContent = `已成功登入 名稱為 ${username}`;
-        document.getElementById('login-count').textContent = `這是您第 ${loginCount} 次登入`;
+        document.getElementById('welcome-message').textContent = `${username} 你好`;
+        document.getElementById('login-count').textContent = `您已登入本網站 ${loginCount} 次`;
 
         const totalvisited = localStorage.getItem('totalvisited') || 0;
-        document.getElementById('total-visited').textContent = `總來訪人次：${totalvisited}`;
+        document.getElementById('total-visited').textContent = `來訪人次: ${totalvisited}`;
     } else {
         document.getElementById('welcome-message').textContent = `未提供姓名`;
     }
