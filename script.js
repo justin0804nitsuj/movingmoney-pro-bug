@@ -36,3 +36,9 @@ function displayWelcomeMessage() {
         document.getElementById('welcome-message').textContent = `未提供姓名`;
     }
 }
+
+fetch('/visit')
+    .then(response => response.json())
+    .then(data => {
+        document.getElementById('total-visited').textContent = `來訪人次: ${data.totalVisited}`;
+    });
