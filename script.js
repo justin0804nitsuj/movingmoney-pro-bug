@@ -1,17 +1,17 @@
 function login() {
     const username = document.getElementById('username').value;
     if (username) {
-        // 取得登入次數
+        // 取得登入次數，從 localStorage 中獲取或初始化為 0
         let loginCount = localStorage.getItem(`${username}_loginCount`) || 0;
         loginCount++;
         localStorage.setItem(`${username}_loginCount`, loginCount);
 
-        // 更新總來訪人次
+        // 向伺服器發送請求以更新總來訪人次
         fetch('/api/visits', { method: 'POST' })
             .then(response => response.json())
             .then(data => {
                 const encodedUsername = encodeURIComponent(username);
-                window.location.href = `https://movingmoney-pro-bug.vercel.app/main.html?username=${encodedUsername}&loginCount=${loginCount}`;
+                window.location.href = `https://movingmoney-pro-bug.vercel.app/main.html?username=${encodedUsername}&loginCount=${loginCount}&totalvisited=${data.totalVisits}`;
             })
             .catch(error => console.error('Error updating total visits:', error));
     } else {
