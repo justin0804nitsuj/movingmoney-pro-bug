@@ -1,22 +1,19 @@
 function login() {
     const username = document.getElementById('username').value;
     if (username) {
-        // 發送登入次數更新請求
-        fetch('/api/login', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username: username })
-        })
-        .then(response => response.json())
-        .then(data => {
-            // 導向到 main.html 並傳遞使用者名稱
-            window.location.href = `https://movingmoney-pro-bug.vercel.app/main.html?username=${username}&loginCount=${loginCount}`;
-        })
-        .catch(error => console.error('Error:', error));
+        // 取得登入次數，從 localStorage 中獲取或初始化為 0
+        let loginCount = localStorage.getItem(`${username}_loginCount`) || 0;
+        loginCount++;
+        localStorage.setItem(`${username}_loginCount`, loginCount);
 
         // 更新總來訪人次
-        fetch('/api/visit', { method: 'POST' })
-            .catch(error => console.error('Error:', error));
+        let totalvisited = localStorage.getItem('totalvisited') || 0;
+        totalvisited++;
+        localStorage.setItem('totalvisited', totalvisited);
+
+        // 將使用者名稱和登入次數加入 URL 並導向 main.html
+        const encodedUsername = encodeURIComponent(username);
+        window.location.href = `https://movingmoney-pro-bug.vercel.app/main.html?username=${encodedUsername}&loginCount=${loginCount}`;
     } else {
         alert("請輸入姓名");
     }
