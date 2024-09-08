@@ -6,7 +6,7 @@ function login() {
         loginCount++;
         localStorage.setItem(`${username}_loginCount`, loginCount);
 
-        // 更新總來訪人次
+        // 更新總登入人次
         let totalvisited = localStorage.getItem('totalvisited') || 0;
         totalvisited++;
         localStorage.setItem('totalvisited', totalvisited);
@@ -27,40 +27,12 @@ function displayWelcomeMessage() {
     const username = getParameterByName('username');
     if (username) {
         const loginCount = localStorage.getItem(`${username}_loginCount`) || 0;
-        document.getElementById('welcome-message').textContent = `${username} 你好`;
-        document.getElementById('login-count').textContent = `您已登入本網站 ${loginCount} 次`;
+        document.getElementById('welcome-message').textContent = `已成功登入 名稱為 ${username}`;
+        document.getElementById('login-count').textContent = `這是您第 ${loginCount} 次登入`;
 
         const totalvisited = localStorage.getItem('totalvisited') || 0;
-        document.getElementById('total-visited').textContent = `來訪人次: ${totalvisited}`;
+        document.getElementById('total-visited').textContent = `總來訪人次：${totalvisited}`;
     } else {
         document.getElementById('welcome-message').textContent = `未提供姓名`;
     }
 }
-
-fetch('/visit')
-    .then(response => response.json())
-    .then(data => {
-        document.getElementById('total-visited').textContent = `來訪人次: ${data.totalVisited}`;
-    });
-
-        // Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyDiKJAv2LoRqZeDEeXwObHahORbRgbbF_0",
-  authDomain: "pro-bug-24c02.firebaseapp.com",
-  projectId: "pro-bug-24c02",
-  storageBucket: "pro-bug-24c02.appspot.com",
-  messagingSenderId: "786668643323",
-  appId: "1:786668643323:web:c37036b82c80548e66215e",
-  measurementId: "G-QB34B12S0C"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
