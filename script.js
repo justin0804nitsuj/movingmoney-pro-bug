@@ -11,7 +11,7 @@ function login() {
             .then(response => response.json())
             .then(data => {
                 const encodedUsername = encodeURIComponent(username);
-                window.location.href = `main.html?username=${encodedUsername}&loginCount=${loginCount}&totalvisited=${data.totalVisits}`;
+                window.location.href = `https://movingmoney-pro-bug.vercel.app/main.html?username=${encodedUsername}&loginCount=${loginCount}`;
             })
             .catch(error => console.error('Error updating total visits:', error));
     } else {
