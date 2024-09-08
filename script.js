@@ -10,7 +10,7 @@ function login() {
         .then(response => response.json())
         .then(data => {
             // 導向到 main.html 並傳遞使用者名稱
-            window.location.href = `main.html?username=${encodeURIComponent(username)}&loginCount=${data.loginCount}`;
+            window.location.href = `https://movingmoney-pro-bug.vercel.app/main.html?username=${username}&loginCount=${loginCount}`;
         })
         .catch(error => console.error('Error:', error));
 
