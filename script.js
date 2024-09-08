@@ -32,7 +32,7 @@ function displayWelcomeMessage() {
     if (username) {
         document.getElementById('welcome-message').textContent = `已成功登入 名稱為 ${username}`;
         document.getElementById('login-count').textContent = `這是您第 ${loginCount} 次登入`;
-        document.getElementById('total-visited').textContent = `總來訪人次：${totalVisits}`;
+        document.getElementById('total-visited').textContent = `總來訪人次：${totalvisited}`;
     } else {
         document.getElementById('welcome-message').textContent = `未提供姓名`;
     }
