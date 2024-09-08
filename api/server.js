@@ -30,4 +30,10 @@ app.post('/incrementVisits', (req, res) => {
     });
 });
 
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+    console.log(`伺服器正在運行: ${PORT}`);
+});
+
 module.exports = app;
